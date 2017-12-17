@@ -25,9 +25,8 @@ E     | throwing the hips to the front
 Data from accelerometers on the belt, forearm, arm, and dumbell are in the raw training (trdata) and testing (tsdata) sets. The traning data also includes the "classe" factor variable for activity classification.
 
 Additional information:
-http://web.archive.org/web/20161224072740/http:/groupware.les.inf.puc-rio.br/har
-
-Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . Stuttgart, Germany: ACM SIGCHI, 2013.
+* http://web.archive.org/web/20161224072740/http:/groupware.les.inf.puc-rio.br/har
+* Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human '13) . Stuttgart, Germany: ACM SIGCHI, 2013.
 
 
 ## Data Preprocessing
@@ -63,7 +62,7 @@ library(gbm); library(randomForest); set.seed(3433)
 
 # train the data using Stochastic Gradient Boosting (gbm) & Random forest (rf)
 tc <- trainControl(method="cv", 5)
-garbage <- capture.output( #supprest gbm iteration print output
+garbage <- capture.output( #suppress gbm iteration print output
 gbm.fit <- train(classe ~., method="gbm", data=training, trControl=tc)) 
 gbm.fit
 ```
@@ -93,5 +92,7 @@ Random forest model had higher accuracy on the test set (testing) than the gbm m
 # use models to predict results on the validation data set 
 rf.pred.ts <- predict(rf.fit, ts)
 rf.pred.ts
+#  [1] B A B A A E D B A A B C B A E E A B B B
+# Levels: A B C D E
 ```
 
